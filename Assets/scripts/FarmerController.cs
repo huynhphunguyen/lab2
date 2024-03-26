@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.EventSystems;
 
 public class FarmerController : MonoBehaviour
 {
@@ -10,21 +9,19 @@ public class FarmerController : MonoBehaviour
     public float movespeed = 5f;
     public float boundary = 10f;
     private float facingDirection = 1f;
-    
     void Start()
     {
-       rb = GetComponent<Rigidbody2D>();
+        rb = GetComponent<Rigidbody2D>();
     }
 
     // Update is called once per frame
     void Update()
-
-    { 
+    {
         float moveInput = Input.GetAxis("Horizontal");
         Vector3 moveDirection = new Vector3(moveInput, 0, 0);
-        transform.Translate(moveDirection* movespeed * Time.deltaTime);
+        transform.Translate(moveDirection * movespeed * Time.deltaTime);
         Vector3 currentPosition = transform.position;
-        if (currentPosition.x < - boundary)
+        if (currentPosition.x < -boundary)
         {
             currentPosition.x = -boundary;
         }
@@ -37,13 +34,13 @@ public class FarmerController : MonoBehaviour
         {
             facingDirection = -1;
         }
-        if (Input.GetKey(KeyCode.D)) 
+        if (Input.GetKey(KeyCode.D))
         {
             facingDirection = 1;
         }
-        Vector3 newscale = transform.localScale;
-        newscale.x = facingDirection;
-        transform.localScale = newscale;
+        Vector3 newScale = transform.localScale;
+        newScale.x = facingDirection;
+        transform.localScale = newScale;
         transform.position = currentPosition;
     }
 }
